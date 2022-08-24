@@ -1,0 +1,12 @@
+{
+  "monkeypox_illumina_PE.accession": "String",
+  "monkeypox_illumina_PE.date_processed": "String",
+  "monkeypox_illumina_PE.ref": "File",
+  "monkeypox_illumina_PE.ref_index": "File",  
+  "monkeypox_illumina_PE.ref_dict": "File",
+  "monkeypox_illumina_PE.ref_amb": "File",
+  "monkeypox_illumina_PE.ref_ann": "File",
+  "monkeypox_illumina_PE.ref_bwt": "File",
+  "monkeypox_illumina_PE.ref_pac": "File",
+  "monkeypox_illumina_PE.ref_sa": "File"  
+}

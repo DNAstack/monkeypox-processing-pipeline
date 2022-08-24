@@ -63,11 +63,11 @@ workflow monkeypox_illumina_PE {
   }
 
   output { 
-    String accession = common.download_fastqs
-    # Should we output fastq and BAM files?
+    # Do we need date_processed?
+    # Should we output fastq, BAM, and assembled files?
     # Array[File] fastq_files = [download_fastqs.fastq_R1, download_fastqs.fastq_R2]
     Array [File] vcf_files = [call_variants.vcf, call_variants.vcf_index] 
-    Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
+    # Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
     File sample_metadata = download_fastqs.sample_metadata
     File lineage_metadata = assign_lineage.lineage_metadata
   }

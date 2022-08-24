@@ -12,7 +12,7 @@ sequencing reads. The FASTQ-based workflows are able to process reads originatin
 
 These workflows can be used to process FASTQ files into variant calls, assembled genomes, and lineage metadata.
 
-THe inputs and outputs for the FASTQ-based workflow is outlined below for processing Illumina paired-end monkeypox sequencing 
+The inputs and outputs for the FASTQ-based workflow is outlined below for processing Illumina paired-end monkeypox sequencing 
 data.
 
 
@@ -35,8 +35,9 @@ An input template file with some defaults pre-defined can be found
 | Output | Description |
 |:-|:-|
 | `vcf`, `vcf_index` | Variant calls and index in VCF format |
-| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from NCBI SRA |
-| `lineage_metadata` | Lineage assignment and associated metadata (tool versions etc.) output by `Nextclade` |
+| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from [NCBI 
+SRA](https://www.ncbi.nlm.nih.gov/sra) |
+| `lineage_metadata` | Lineage assignment and associated metadata (tool versions, etc.) output by `Nextclade` |
 
 
 ## Running workflows

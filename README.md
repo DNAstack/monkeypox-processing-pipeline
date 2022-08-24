@@ -35,8 +35,7 @@ An input template file with some defaults pre-defined can be found
 | Output | Description |
 |:-|:-|
 | `vcf`, `vcf_index` | Variant calls and index in VCF format |
-| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from [NCBI 
-SRA](https://www.ncbi.nlm.nih.gov/sra) |
+| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) |
 | `lineage_metadata` | Lineage assignment and associated metadata (tool versions, etc.) output by `Nextclade` |
 
 

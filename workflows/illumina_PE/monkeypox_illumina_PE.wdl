@@ -191,10 +191,12 @@ task call_variants {
   }
 
   runtime {
-    docker: "broadinstitute/gatk:4.2.6.1"
+    docker: "broadinstitute/gatk:4.2.6.1" 
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
+    preemptible: 2 # remove after 
+    bootDiskSizeGb: 20 # remove after
   }
 }
 

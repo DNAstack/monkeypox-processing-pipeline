@@ -5,7 +5,12 @@ task download_fastqs {
         String accession
     }
 
+    String NCBI_API_KEY = "bd01816fd91fb4c867a002f5e3e613f0fd08"
+
     command <<<
+        NCBI_API_KEY=~{NCBI_API_KEY}
+        export NCBI_API_KEY
+
         use_fastq_dump=false
 
         retries=5
@@ -65,7 +70,7 @@ task download_fastqs {
     }
 
     runtime {
-        docker: "dnastack/sra-toolkit-tabix:2.10.7"
+        docker: "dnastack/sra-toolkit:2.10.7"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk 50 HDD"

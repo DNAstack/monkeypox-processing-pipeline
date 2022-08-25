@@ -65,7 +65,7 @@ task download_fastqs {
     }
 
     runtime {
-        docker: "dnastack/monkey-processing-pipeline/sra-toolkit-tabix:2.10.7"
+        docker: "dnastack/sra-toolkit-tabix:2.10.7"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk 50 HDD"
@@ -105,7 +105,7 @@ task assign_lineage {
     }
 
     runtime {
-        docker: "dnastack/monkey-processing-pipeline/nextclade:2.4.0"
+        docker: "dnastack/nextclade:2.4.0"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk " + disk_size + " HDD"

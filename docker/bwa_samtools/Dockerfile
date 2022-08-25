@@ -1,4 +1,4 @@
-# TAG dnastack/monkeypox-processing-pipeline/bwa_samtools:0.0.1
+# TAG dnastack/bwa_samtools:0.0.1
 FROM ubuntu:xenial
 
 MAINTAINER Karen Fang <karen@dnastack.com>

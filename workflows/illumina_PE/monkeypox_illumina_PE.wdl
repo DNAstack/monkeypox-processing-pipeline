@@ -116,7 +116,7 @@ task align {
   }
 
   runtime {
-    docker: "dnastack/monkey-processing-pipeline/bwa_samtools:0.0.1"
+    docker: "dnastack/bwa_samtools:0.0.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size_fastq + " HDD"
@@ -157,7 +157,7 @@ task mark_duplicates {
   }
 
   runtime {
-    docker: "dnastack/monkey-processing-pipeline/bwa_samtools:0.0.1"
+    docker: "dnastack/bwa_samtools:0.0.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
@@ -234,7 +234,7 @@ task assemble_genome {
   }
 
   runtime {
-    docker: "dnastack/monkey-processing-pipeline/ivar:1.3.1"
+    docker: "dnastack/ivar:1.3.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"

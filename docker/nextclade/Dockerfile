@@ -1,4 +1,4 @@
-# TAG dnastack/monkeypox-processing-pipeline/nextclade:2.4.0
+# TAG dnastack/nextclade:2.4.0
 FROM ubuntu:xenial
 
 MAINTAINER Heather Ward <heather@danstack.com>

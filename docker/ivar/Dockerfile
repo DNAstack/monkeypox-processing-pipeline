@@ -1,5 +1,5 @@
-# TAG dnastack/monkeypox-processing-pipeline/ivar:1.3.1
-FROM dnastack/monkeypox-processing-pipeline/bwa_samtools:0.0.1
+# TAG dnastack/ivar:1.3.1
+FROM dnastack/bwa_samtools:0.0.1
 
 MAINTAINER Heather Ward <heather@dnastack.com>
 

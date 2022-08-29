@@ -3,9 +3,8 @@ version 1.0
 task download_fastqs {
     input {
         String accession
+	String NCBI_API_KEY
     }
-
-    String NCBI_API_KEY = "bd01816fd91fb4c867a002f5e3e613f0fd08"
 
     command <<<
         NCBI_API_KEY=~{NCBI_API_KEY}
@@ -74,6 +73,7 @@ task download_fastqs {
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk 50 HDD"
+	preemptible: 2
     }
 }
 
@@ -114,5 +114,6 @@ task assign_lineage {
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk " + disk_size + " HDD"
+	preemptible: 2
     }
 }

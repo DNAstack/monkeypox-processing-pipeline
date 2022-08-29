@@ -1,42 +1,27 @@
 # Monkeypox assembly, variant calling, and lineage analysis pipeline
 
-This repository contains workflows for processing monkeypox data from Illumina.
-
-The [FASTQ-based workflows](#fastq-based-workflows) produce variant calls, assembled genomes, and lineage assignments from raw 
-sequencing reads. The FASTQ-based workflows are able to process reads originating from Illumina (paired-end) sequencing data.
-
+This repository contains workflows for processing [NCBI SRA monkeypox 
+data](https://www.ncbi.nlm.nih.gov/sra/?term=(monkeypox)+AND+%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) from different sequencing platforms including Illumina. The 
+2022 monkeypox outbreak was declared as a Public Health Emergency of International Concern by the World Health Organization (WHO). The Monkeypox virus can cause a rash 
+that can present as pimples or blisters. Other symptoms can include fever, chills, headache, and exhaustion. It stems from the same family of viruses that cause smallpox; 
+however, monkeypox is milder and rarely fatal, lasting for 2-4 weeks. There are two distinct genetic clades of the monkeypox virus: the Central African (Congo Basin) 
+clade and the West African clade, with the latter being implicated in the current outbreak. The most updated information states that monkeypox can be spread through 
+direct contact, touching objects, and respiratory secretions. 
 
 ## Workflows
 
-### FASTQ-based workflows
+These workflows can be used to process FASTQ files into variant calls, assembled genomes, and lineage assignments from raw sequencing reads.
 
-These workflows can be used to process FASTQ files into variant calls, assembled genomes, and lineage metadata.
-
-The inputs and outputs for the FASTQ-based workflow is outlined below for processing Illumina paired-end monkeypox sequencing 
-data.
+The inputs and outputs for the FASTQ-based workflow is outlined in detail in the repository for that workflow, linked below [Illumina](#illumina).
 
 
-#### Workflow inputs
+### Illumina
 
-An input template file with some defaults pre-defined can be found 
-[here](https://github.com/DNAstack/monkeypox-processing-pipeline/blob/add_monkeypox_workflow/workflows/illumina_PE/inputs.json).
+This workflow is used for processing Illumina (paired-end) monkeypox sequencing data.
 
-| Input | Description |
-|:-|:-|
-| `accession` | Sample ID |
-| `ref` | [The monkeypox reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383.1/) |
-| `ref_index` | The fai index file for the reference genome. Required input for variant calling with GATK |
-| `ref_dict` | The dictionary file for the reference genome. Required input for variant calling with GATK |
-| `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa` | Output files after indexing with bwa  |
+- [Workflow inputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/workflows/illumina_PE#workflow-inputs)
 
-
-#### Workflow outputs
-
-| Output | Description |
-|:-|:-|
-| `vcf`, `vcf_index` | Variant calls and index in VCF format |
-| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) |
-| `lineage_metadata` | Lineage assignment and associated metadata (tool versions, etc.) output by `Nextclade` |
+- [Workflow outputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/workflows/illumina_PE#workflow-outputs)
 
 
 ## Running workflows
@@ -67,11 +52,3 @@ miniwdl run /path/to/workflow.wdl -i /path/to/inputs.json
 
 Output and execution files will be located in a dated directory (e.g. named `20200704_073415_main`). When the workflow finishes successfully, it will output JSON (to stdout) specifying the full path to each output file.
 
-
-## Containers
-
-Docker image definitions can be found in 
-[docker](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/docker). 
-
-All containers are publicly hosted in [DNAstack's container registry](https://hub.docker.com/u/dnastack), with the exception of 
-[GATK](https://hub.docker.com/r/broadinstitute/gatk/).

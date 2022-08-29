@@ -5,6 +5,7 @@ import "common.wdl" as common
 workflow monkeypox_illumina_PE {
   input {
     String accession
+    String NCBI_API_KEY
 
     File ref
     File ref_index
@@ -19,6 +20,7 @@ workflow monkeypox_illumina_PE {
   call common.download_fastqs {
     input:
       accession = accession
+      NCBI_API_KEY = NCBI_API_KEY
   }
 
   call align {
@@ -63,11 +65,9 @@ workflow monkeypox_illumina_PE {
   }
 
   output { 
-    # Do we need date_processed?
-    # Should we output fastq, BAM, and assembled files?
-    # Array[File] fastq_files = [download_fastqs.fastq_R1, download_fastqs.fastq_R2]
+    Array [File] bam_files = [mark_duplicates.markdup_bam, mark_duplicates.markdup_bam_index]
     Array [File] vcf_files = [call_variants.vcf, call_variants.vcf_index] 
-    # Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
+    Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
     File sample_metadata = download_fastqs.sample_metadata
     File lineage_metadata = assign_lineage.lineage_metadata
   }
@@ -96,7 +96,6 @@ task align {
   Int disk_size_fastq = ceil((size(fastq_R1, "GB") + size(fastq_R2, "GB") + size(ref, "GB")) * 2 + 20)
 
   command <<<
-    # TODO additional params
     bwa mem \
       -R "@RG\\tID:~{accession}\\tSM:~{accession}\\tPL:~{platform}" \
       "~{ref}" \
@@ -120,6 +119,7 @@ task align {
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size_fastq + " HDD"
+    preemptible: 2
   }
 }
 
@@ -161,6 +161,7 @@ task mark_duplicates {
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
+    preemptible: 2
   }
 }
 
@@ -178,7 +179,6 @@ task call_variants {
   Int disk_size = ceil(size(markdup_bam, "GB") + 20)
 
   command <<<
-    # TODO for now we will only run single sample calling
     gatk HaplotypeCaller \
       -R "~{ref}" \
       -I "~{markdup_bam}" \
@@ -195,8 +195,8 @@ task call_variants {
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
-    preemptible: 2 # remove after 
-    bootDiskSizeGb: 20 # remove after
+    preemptible: 2 
+    bootDiskSizeGb: 20
   }
 }
 
@@ -240,5 +240,6 @@ task assemble_genome {
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
+    preemptible: 2
   }
 }

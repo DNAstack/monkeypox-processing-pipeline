@@ -5,7 +5,7 @@ This workflow pulls paired-end Illumina Monkeypox reads from NCBI's SRA and runs
 
 ## Tools
 
-- [sra toolkit](https://github.com/ncbi/sra-tools)
+- [sra toolkit](https://github.com/ncbi/sra-tools) and [sra-toolkit docker](https://github.com/DNAstack/covid-processing-pipeline/tree/master/dockerfiles)
 - [bwa mem](https://github.com/lh3/bwa) 0.7.17
 - [samtools](https://github.com/samtools/samtools) 1.15
 - [GATK](https://github.com/broadinstitute/gatk) 4
@@ -13,11 +13,31 @@ This workflow pulls paired-end Illumina Monkeypox reads from NCBI's SRA and runs
 - [nextclade](https://github.com/nextstrain/nextclade) 2.4.0
 
 
-## Workflow inputs
+## Workflow
 
-- `accession`: [NCBI](https://www.ncbi.nlm.nih.gov/sra/?term=%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) run accession ([SED]RRxxxx)
-- `ref`, `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa`: Monkeypox reference genome ([NC_063383](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383)) and [associated bwa index files](#preparing-bwa-index-files)
-- `ref_index`, `ref_dict`: Monkeypox reference genome [index and dict files](#preparing-reference-index-and-dict-files); required by GATK HaplotypeCaller
+### Workflow inputs
+
+An input template file with some defaults pre-defined can be found
+[here](https://github.com/DNAstack/monkeypox-processing-pipeline/blob/add_monkeypox_workflow/workflows/illumina_PE/inputs.json).
+   
+| Input | Description |
+|:-|:-|
+| `accession` | [NCBI](https://www.ncbi.nlm.nih.gov/sra/?term=%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) run accession ([SED]RRxxxx); Sample ID |
+| `ref` | [The monkeypox reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383.1/) |
+| `ref_index` | The fai index file for the reference genome. Required input for variant calling with GATK |
+| `ref_dict` | The dictionary file for the reference genome. Required input for variant calling with GATK |
+| `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa` | Output files after [indexing with bwa(#preparing-bwa-index-files) |
+
+
+### Workflow outputs
+   
+| Output | Description |
+|:-|:-|
+| `markdup_bam`, `markdup_bam_index` | Marked duplicate and sorted alignments and index in BAM format |
+| `assembly`, `assembly_quality` | Assembled monkeypox genome and corresponding quality metrics |
+| `vcf`, `vcf_index` | Variant calls and index in VCF format |
+| `sample_metadata` | Associated sample metdata (technical aspects of sequencing experiments) from [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) |
+| `lineage_metadata` | Lineage assignment and associated metadata (tool versions, etc.) output by `Nextclade` |
 
 
 ## Methods
@@ -43,10 +63,10 @@ samtools dict NC_063383.1.fa -o NC_063383.1.dict
 ```
 
 
-## Workflow outputs
+## Containers
 
-_For each workflow output:_
+Docker image definitions can be found in
+[docker](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/docker).
 
-_- `output_name`: description_
-
-_Alternatively, a markdown table can be used._
+All containers are publicly hosted in [DNAstack's container registry](https://hub.docker.com/u/dnastack), with the exception of
+[GATK](https://hub.docker.com/r/broadinstitute/gatk/).

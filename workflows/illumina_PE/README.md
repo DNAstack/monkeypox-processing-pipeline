@@ -22,6 +22,8 @@ An input template file with some defaults pre-defined can be found
    
 | Input | Description |
 |:-|:-|
+| `NCBI_API_KEY` | A unique string identifier for NCBI servers called an [API 
+key](https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/) |   
 | `accession` | [NCBI](https://www.ncbi.nlm.nih.gov/sra/?term=%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) run accession ([SED]RRxxxx); Sample ID |
 | `ref` | [The monkeypox reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383.1/) |
 | `ref_index` | The fai index file for the reference genome. Required input for variant calling with GATK |

@@ -19,7 +19,7 @@ workflow monkeypox_illumina_PE {
 
   call common.download_fastqs {
     input:
-      accession = accession
+      accession = accession,
       NCBI_API_KEY = NCBI_API_KEY
   }
 

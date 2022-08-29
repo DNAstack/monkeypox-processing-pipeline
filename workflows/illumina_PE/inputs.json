@@ -1,5 +1,5 @@
 {
-  "monkeypox_illumina_PE.NCBI_API_KEY: "String",
+  "monkeypox_illumina_PE.NCBI_API_KEY": "String",
   "monkeypox_illumina_PE.accession": "String",
   "monkeypox_illumina_PE.ref": "File",
   "monkeypox_illumina_PE.ref_index": "File",  

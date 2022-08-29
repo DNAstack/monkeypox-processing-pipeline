@@ -5,7 +5,7 @@ This workflow pulls paired-end Illumina Monkeypox reads from NCBI's SRA and runs
 
 ## Tools
 
-- [sra toolkit](https://github.com/ncbi/sra-tools) and [sra-toolkit docker](https://github.com/DNAstack/covid-processing-pipeline/tree/master/dockerfiles)
+- [sra toolkit](https://github.com/ncbi/sra-tools) and [sra-toolkit docker](https://github.com/DNAstack/covid-processing-pipeline/tree/master/dockerfiles) 2.10.7
 - [bwa mem](https://github.com/lh3/bwa) 0.7.17
 - [samtools](https://github.com/samtools/samtools) 1.15
 - [GATK](https://github.com/broadinstitute/gatk) 4
@@ -26,7 +26,7 @@ An input template file with some defaults pre-defined can be found
 | `ref` | [The monkeypox reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383.1/) |
 | `ref_index` | The fai index file for the reference genome. Required input for variant calling with GATK |
 | `ref_dict` | The dictionary file for the reference genome. Required input for variant calling with GATK |
-| `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa` | Output files after [indexing with bwa(#preparing-bwa-index-files) |
+| `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa` | Output files after [indexing with bwa](#preparing-bwa-index-files) |
 
 
 ### Workflow outputs

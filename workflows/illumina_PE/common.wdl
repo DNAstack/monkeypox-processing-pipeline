@@ -1,1 +1,1 @@
-./workflows/common/common.wdl
+../common/common.wdl

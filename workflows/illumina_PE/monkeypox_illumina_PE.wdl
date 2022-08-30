@@ -6,6 +6,7 @@ workflow monkeypox_illumina_PE {
   input {
     String accession
     String NCBI_API_KEY
+    String container_registry
 
     File ref
     File ref_index
@@ -20,7 +21,8 @@ workflow monkeypox_illumina_PE {
   call common.download_fastqs {
     input:
       accession = accession,
-      NCBI_API_KEY = NCBI_API_KEY
+      NCBI_API_KEY = NCBI_API_KEY,
+      container_registry = container_registry
   }
 
   call align {
@@ -28,6 +30,7 @@ workflow monkeypox_illumina_PE {
       fastq_R1 = download_fastqs.fastq_R1,
       fastq_R2 = download_fastqs.fastq_R2,
       accession = accession,
+      container_registry = container_registry,
       ref = ref,
       ref_amb = ref_amb,
       ref_ann = ref_ann,
@@ -39,6 +42,7 @@ workflow monkeypox_illumina_PE {
   call mark_duplicates {
     input:
       accession = accession,
+      container_registry = container_registry,
       aligned_sorted_bam = align.aligned_sorted_bam
   }
 
@@ -55,12 +59,14 @@ workflow monkeypox_illumina_PE {
   call assemble_genome {
     input:
       accession = accession,
+      container_registry = container_registry,
       aligned_sorted_bam = align.aligned_sorted_bam
   }
 
   call common.assign_lineage {
     input:
       accession = accession,
+      container_registry = container_registry,
       assembly = assemble_genome.assembly
   }
 
@@ -81,6 +87,7 @@ workflow monkeypox_illumina_PE {
 task align {
   input {
     String accession
+    String container_registry
     File fastq_R1
     File fastq_R2
 
@@ -115,7 +122,7 @@ task align {
   }
 
   runtime {
-    docker: "dnastack/bwa_samtools:0.0.1"
+    docker: "~{container_registry}/bwa_samtools:0.0.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size_fastq + " HDD"
@@ -126,6 +133,7 @@ task align {
 task mark_duplicates {
   input {
     String accession
+    String container_registry
     File aligned_sorted_bam
   }
 
@@ -157,7 +165,7 @@ task mark_duplicates {
   }
 
   runtime {
-    docker: "dnastack/bwa_samtools:0.0.1"
+    docker: "~{container_registry}/bwa_samtools:0.0.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
@@ -203,6 +211,7 @@ task call_variants {
 task assemble_genome {
   input {
     String accession
+    String container_registry
     File aligned_sorted_bam
   }
 
@@ -236,7 +245,7 @@ task assemble_genome {
   }
 
   runtime {
-    docker: "dnastack/ivar:1.3.1"
+    docker: "~{container_registry}/ivar:1.3.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"

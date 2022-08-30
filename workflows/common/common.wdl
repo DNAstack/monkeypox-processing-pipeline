@@ -3,7 +3,8 @@ version 1.0
 task download_fastqs {
     input {
         String accession
-	String NCBI_API_KEY
+        String NCBI_API_KEY
+        String container_registry
     }
 
     command <<<
@@ -69,17 +70,18 @@ task download_fastqs {
     }
 
     runtime {
-        docker: "dnastack/sra-toolkit:2.10.7"
+        docker: "~{container_registry}/sra-toolkit:2.10.7"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk 50 HDD"
-	preemptible: 2
+        preemptible: 2
     }
 }
 
 task assign_lineage {
     input {
         String accession
+        String container_registry
         File assembly
     }
 
@@ -110,10 +112,10 @@ task assign_lineage {
     }
 
     runtime {
-        docker: "dnastack/nextclade:2.4.0"
+        docker: "~{container_registry}/nextclade:2.4.0"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk " + disk_size + " HDD"
-	preemptible: 2
+        preemptible: 2
     }
 }

@@ -8,5 +8,6 @@
   "monkeypox_illumina_PE.ref_ann": "File",
   "monkeypox_illumina_PE.ref_bwt": "File",
   "monkeypox_illumina_PE.ref_pac": "File",
-  "monkeypox_illumina_PE.ref_sa": "File"  
+  "monkeypox_illumina_PE.ref_sa": "File",
+  "monkeypox_illumina_PE.container_registry": "dnastack"  
 }

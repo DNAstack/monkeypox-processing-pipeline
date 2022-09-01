@@ -17,8 +17,7 @@ This workflow pulls paired-end Illumina Monkeypox reads from NCBI's SRA and runs
 
 ### Workflow inputs
 
-An input template file with some defaults pre-defined can be found
-[here](https://github.com/DNAstack/monkeypox-processing-pipeline/blob/add_monkeypox_workflow/workflows/illumina_PE/inputs.json).
+An input template file with some defaults pre-defined can be found [here](https://github.com/DNAstack/monkeypox-processing-pipeline/blob/main/workflows/illumina_PE/inputs.json).
    
 | Input | Description |
 |:-|:-|

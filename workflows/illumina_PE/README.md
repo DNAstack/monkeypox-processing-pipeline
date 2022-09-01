@@ -35,6 +35,8 @@ An input template file with some defaults pre-defined can be found
    
 | Output | Description |
 |:-|:-|
+| `fastq_R1`, `fastq_R2` | Paired-end raw reads in fastq files |
+| `aligned_sorted_bam` | Sorted alignments in BAM format |
 | `markdup_bam`, `markdup_bam_index` | Marked duplicate and sorted alignments and index in BAM format |
 | `assembly`, `assembly_quality` | Assembled monkeypox genome and corresponding quality metrics |
 | `vcf`, `vcf_index` | Variant calls and index in VCF format |

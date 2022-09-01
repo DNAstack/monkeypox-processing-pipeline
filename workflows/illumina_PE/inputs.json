@@ -1,6 +1,7 @@
 {
   "monkeypox_illumina_PE.NCBI_API_KEY": "String",
   "monkeypox_illumina_PE.accession": "String",
+  "monkeypox_illumina_PE.container_registry": "dnastack",
   "monkeypox_illumina_PE.ref": "File",
   "monkeypox_illumina_PE.ref_index": "File",  
   "monkeypox_illumina_PE.ref_dict": "File",
@@ -8,6 +9,5 @@
   "monkeypox_illumina_PE.ref_ann": "File",
   "monkeypox_illumina_PE.ref_bwt": "File",
   "monkeypox_illumina_PE.ref_pac": "File",
-  "monkeypox_illumina_PE.ref_sa": "File",
-  "monkeypox_illumina_PE.container_registry": "dnastack"  
+  "monkeypox_illumina_PE.ref_sa": "File"
 }

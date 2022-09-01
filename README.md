@@ -19,9 +19,9 @@ The inputs and outputs for the FASTQ-based workflow is outlined in detail in the
 
 This workflow is used for processing Illumina (paired-end) monkeypox sequencing data.
 
-- [Workflow inputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/workflows/illumina_PE#workflow-inputs)
+- [Workflow inputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/main/workflows/illumina_PE#workflow-inputs)
 
-- [Workflow outputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/workflows/illumina_PE#workflow-outputs)
+- [Workflow outputs](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/main/workflows/illumina_PE#workflow-outputs)
 
 
 ## Running workflows

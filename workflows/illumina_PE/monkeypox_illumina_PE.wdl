@@ -1,6 +1,6 @@
 version 1.0
 
-import "common.wdl" as common
+import "https://raw.githubusercontent.com/DNAstack/monkeypox-processing-pipeline/main/workflows/common/common.wdl" as common
 
 workflow monkeypox_illumina_PE {
   input {

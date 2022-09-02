@@ -74,7 +74,8 @@ workflow monkeypox_illumina_PE {
     Array [File] fastq_files = [download_fastqs.fastq_R1, download_fastqs.fastq_R2]
     File aligned_sorted_bam = align.aligned_sorted_bam
     Array [File] bam_files = [mark_duplicates.markdup_bam, mark_duplicates.markdup_bam_index]
-    Array [File] vcf_files = [call_variants.vcf, call_variants.vcf_index] 
+    File vcf = call_variants.vcf
+    File vcf_index = call_variants.vcf_index
     Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
     File sample_metadata = download_fastqs.sample_metadata
     File lineage_metadata = assign_lineage.lineage_metadata

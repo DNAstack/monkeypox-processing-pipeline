@@ -82,7 +82,7 @@ workflow monkeypox_illumina_PE {
     File aligned_sorted_bam = align.aligned_sorted_bam
     Array [File] bam_files = [mark_duplicates.markdup_bam, mark_duplicates.markdup_bam_index]
     File vcf = pipeline_header_vcf.vcf
-    File vcf_index = call_variants.vcf_index
+    File vcf_index = pipeline_header_vcf.vcf_index
     Array [File] assembly_files = [assemble_genome.assembly, assemble_genome.assembly_quality]
     File sample_metadata = download_fastqs.sample_metadata
     File lineage_metadata = assign_lineage.lineage_metadata
@@ -205,7 +205,7 @@ task call_variants {
 
   output {
     File initial_vcf = "initial.~{accession}.vcf.gz"
-    File vcf_index = "~{accession}.vcf.gz.tbi"
+    File initial_vcf_index = "initial.~{accession}.vcf.gz.tbi"
   }
 
   runtime {
@@ -235,14 +235,18 @@ task pipeline_header_vcf {
 
     # Edit the header 
     line="$(grep -n '#CHROM' header | cut -f1 -d:)"
-    sed -i "$(($line))i\##pipeline=https://github.com/DNAstack/monkeypox-processing-pipeline/releases/tag/$pipeline_release" header
+    sed -i "$((line))i\##pipeline=https://github.com/DNAstack/monkeypox-processing-pipeline/releases/tag/$pipeline_release" header
 
     # Reheader the file
     bcftools reheader -h header -o "~{accession}.vcf.gz" ~{initial_vcf}
+
+    # Create index
+    bcftools index "~{accession}.vcf.gz" -t -o "~{accession}.vcf.gz.tbi" 
   >>>
 
   output {
     File vcf = "~{accession}.vcf.gz"
+    File vcf_index = "~{accession}.vcf.gz.tbi"
   }
 
   runtime {

@@ -132,7 +132,7 @@ task align {
   }
 
   runtime {
-    docker: "~{container_registry}/bwa_samtools:0.0.1"
+    docker: "~{container_registry}/bwa_samtools:0.7.17"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size_fastq + " HDD"
@@ -175,7 +175,7 @@ task mark_duplicates {
   }
 
   runtime {
-    docker: "~{container_registry}/bwa_samtools:0.0.1"
+    docker: "~{container_registry}/bwa_samtools:0.7.17"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"

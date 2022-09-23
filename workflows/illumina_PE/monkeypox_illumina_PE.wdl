@@ -58,7 +58,7 @@ workflow monkeypox_illumina_PE {
 
   call pipeline_header_vcf {
     input:
-      accession = accession, 
+      accession = accession,
       container_registry = container_registry,
       initial_vcf = call_variants.initial_vcf
   }
@@ -77,7 +77,7 @@ workflow monkeypox_illumina_PE {
       assembly = assemble_genome.assembly
   }
 
-  output { 
+  output {
     Array [File] fastq_files = [download_fastqs.fastq_R1, download_fastqs.fastq_R2]
     File aligned_sorted_bam = align.aligned_sorted_bam
     Array [File] bam_files = [mark_duplicates.markdup_bam, mark_duplicates.markdup_bam_index]
@@ -132,7 +132,7 @@ task align {
   }
 
   runtime {
-    docker: "~{container_registry}/bwa_samtools:0.7.17"
+    docker: "~{container_registry}/bwa_samtools:0.7.17_1.15"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size_fastq + " HDD"
@@ -175,7 +175,7 @@ task mark_duplicates {
   }
 
   runtime {
-    docker: "~{container_registry}/bwa_samtools:0.7.17"
+    docker: "~{container_registry}/bwa_samtools:0.7.17_1.15"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
@@ -209,11 +209,11 @@ task call_variants {
   }
 
   runtime {
-    docker: "broadinstitute/gatk:4.2.6.1" 
+    docker: "broadinstitute/gatk:4.2.6.1"
     cpu: 2
     memory: "7.5 GB"
     disks: "local-disk " + disk_size + " HDD"
-    preemptible: 2 
+    preemptible: 2
     bootDiskSizeGb: 20
   }
 }
@@ -233,7 +233,7 @@ task pipeline_header_vcf {
     # Write out the header to be modified
     bcftools view -h ~{initial_vcf} > header
 
-    # Edit the header 
+    # Edit the header
     line="$(grep -n '#CHROM' header | cut -f1 -d:)"
     sed -i "$((line))i\##pipeline=https://github.com/DNAstack/monkeypox-processing-pipeline/releases/tag/$pipeline_release" header
 
@@ -241,7 +241,7 @@ task pipeline_header_vcf {
     bcftools reheader -h header -o "~{accession}.vcf.gz" ~{initial_vcf}
 
     # Create index
-    bcftools index "~{accession}.vcf.gz" -t -o "~{accession}.vcf.gz.tbi" 
+    bcftools index "~{accession}.vcf.gz" -t -o "~{accession}.vcf.gz.tbi"
   >>>
 
   output {

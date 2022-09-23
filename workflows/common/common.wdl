@@ -70,7 +70,7 @@ task download_fastqs {
     }
 
     runtime {
-        docker: "~{container_registry}/sra-toolkit:2.10.7"
+        docker: "~{container_registry}/sra_toolkit:2.10.7"
         cpu: 2
         memory: "7.5 GB"
         disks: "local-disk 50 HDD"

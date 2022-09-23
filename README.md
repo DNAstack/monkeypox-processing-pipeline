@@ -1,12 +1,9 @@
 # Monkeypox assembly, variant calling, and lineage analysis pipeline
 
-This repository contains workflows for processing [NCBI SRA monkeypox 
-data](https://www.ncbi.nlm.nih.gov/sra/?term=(monkeypox)+AND+%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) from different sequencing platforms including Illumina. The 
-2022 monkeypox outbreak was declared as a Public Health Emergency of International Concern by the World Health Organization (WHO). The Monkeypox virus can cause a rash 
-that can present as pimples or blisters. Other symptoms can include fever, chills, headache, and exhaustion. It stems from the same family of viruses that cause smallpox; 
-however, monkeypox is milder and rarely fatal, lasting for 2-4 weeks. There are two distinct genetic clades of the monkeypox virus: the Central African (Congo Basin) 
-clade and the West African clade, with the latter being implicated in the current outbreak. The most updated information states that monkeypox can be spread through 
-direct contact, touching objects, and respiratory secretions. 
+This repository contains workflows for processing [NCBI SRA monkeypox data](https://www.ncbi.nlm.nih.gov/sra/?term=(monkeypox)+AND+%22Monkeypox+virus%22%5Borgn%3A__txid10244%5D) from different sequencing platforms including Illumina. The 2022 monkeypox outbreak was declared as a Public Health Emergency of International Concern by the World Health Organization (WHO). The Monkeypox virus can cause a rash that can present as pimples or blisters. Other symptoms can include fever, chills, headache, and exhaustion. It stems from the same family of viruses that cause smallpox; however, monkeypox is milder and rarely fatal, lasting for 2-4 weeks. There are two distinct genetic clades of the monkeypox virus: the Central African (Congo Basin) clade and the West African clade, with the latter being implicated in the current outbreak. The most updated information states that monkeypox can be spread through direct contact, touching objects, and respiratory secretions.
+
+Docker image definitions can be explored [in DNAstack's image repository](https://github.com/dnastack/bioinformatics-public-docker-images), or [on Dockerhub](https://hub.docker.com/u/dnastack).
+
 
 ## Workflows
 

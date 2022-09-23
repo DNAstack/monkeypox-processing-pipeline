@@ -68,8 +68,7 @@ samtools dict NC_063383.1.fa -o NC_063383.1.dict
 
 ## Containers
 
-Docker image definitions can be found in
-[docker](https://github.com/DNAstack/monkeypox-processing-pipeline/tree/add_monkeypox_workflow/docker).
+Docker image definitions can be found in our [bioinformatics-public-docker-images](https://github.com/DNAstack/bioinformatics-public-docker-images) repo.
 
 All containers are publicly hosted in [DNAstack's container registry](https://hub.docker.com/u/dnastack), with the exception of
 [GATK](https://hub.docker.com/r/broadinstitute/gatk/).

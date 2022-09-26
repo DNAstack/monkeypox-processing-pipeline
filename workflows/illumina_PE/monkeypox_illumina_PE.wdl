@@ -233,46 +233,6 @@ task pipeline_header_vcf {
     # Write out the header to be modified
     bcftools view -h ~{initial_vcf} > header
 
-    # Edit the header
-    line="$(grep -n '#CHROM' header | cut -f1 -d:)"
-    sed -i "$((line))i\##pipeline=https://github.com/DNAstack/monkeypox-processing-pipeline/releases/tag/$pipeline_release" header
-
-    # Reheader the file
-    bcftools reheader -h header -o "~{accession}.vcf.gz" ~{initial_vcf}
-
-    # Create index
-    bcftools index "~{accession}.vcf.gz" -t -o "~{accession}.vcf.gz.tbi"
-  >>>
-
-  output {
-    File initial_vcf = "initial.~{accession}.vcf.gz"
-    File initial_vcf_index = "initial.~{accession}.vcf.gz.tbi"
-  }
-
-  runtime {
-    docker: "~{container_registry}/bcftools:1.16"
-    cpu: 2
-    memory: "7.5 GB"
-    disks: "local-disk " + disk_size + " HDD"
-    preemptible: 2
-  }
-}
-
-task pipeline_header_vcf {
-  input {
-    String accession
-    String container_registry
-    File initial_vcf
-  }
-
-  Int disk_size = ceil(size(initial_vcf, "GB") + 20)
-
-  command <<<
-    pipeline_release=$(curl -s GET https://api.github.com/repos/DNAstack/monkeypox-processing-pipeline/tags | jq -r '.[].name' | head -1)
-
-    # Write out the header to be modified
-    bcftools view -h ~{initial_vcf} > header
-
     # Edit the header 
     line="$(grep -n '#CHROM' header | cut -f1 -d:)"
     sed -i "$((line))i\##pipeline=https://github.com/DNAstack/monkeypox-processing-pipeline/releases/tag/$pipeline_release" header

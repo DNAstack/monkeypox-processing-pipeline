@@ -1,0 +1,13 @@
+{
+  "monkeypox_illumina_PE.accession": "SRR21236143",
+  "monkeypox_illumina_PE.NCBI_API_KEY": "",
+  "monkeypox_illumina_PE.ref": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa",
+  "monkeypox_illumina_PE.ref_index": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.fai",
+  "monkeypox_illumina_PE.ref_dict": "gs://public_workflow_resources/monkeypox/NC_063383.1.dict",
+  "monkeypox_illumina_PE.ref_amb": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.amb",
+  "monkeypox_illumina_PE.ref_ann": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.ann",
+  "monkeypox_illumina_PE.ref_bwt": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.bwt",
+  "monkeypox_illumina_PE.ref_pac": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.pac",
+  "monkeypox_illumina_PE.ref_sa": "gs://public_workflow_resources/monkeypox/NC_063383.1.fa.sa",
+  "monkeypox_illumina_PE.container_registry": "dnastack"
+}

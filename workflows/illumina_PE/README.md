@@ -29,6 +29,10 @@ An input template file with some defaults pre-defined can be found [here](https:
 | `ref_dict` | The dictionary file for the reference genome. Required input for variant calling with GATK |
 | `ref_amb`, `ref_ann`, `ref_bwt`, `ref_pac`, `ref_sa` | Output files after [indexing with bwa](#preparing-bwa-index-files) |
 
+#### Test inputs
+
+Test inputs for use GCP can be found [here](gcp_test_inputs.json). The NCBI_API_KEY will need to be provided. Alternatively, reference files can be downloaded by visiting [this page](https://console.cloud.google.com/storage/browser/public_workflow_resources/monkeypox) (Google login required).
+
 
 ### Workflow outputs
    
